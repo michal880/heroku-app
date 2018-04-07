@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="th/layout ::site-head">
+<title>Klaser monet</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet" type="text/css" media="all" href="../../css/klaser.css" th:href="@{/css/filmoteka.css}" />
+</head>
+
+<body>
+  <header th:replace="th/layout :: site-header" />
+  <div>
+    <h2 th:text="#{title.list}" style="display: inline;">Lista monet</h2>
+  </div>
+  
+  <div class="listaFilmow" th:unless="${#lists.isEmpty(moviesAll)}">
+    <table>
+      <thead>
+        <tr>
+          <th th:text="#{filmoteka.numerKatalogowy}">numerKatalogowy</th>
+          <th th:text="#{filmoteka.opis}">opis</th>
+          <th th:text="#{filmoteka.cenaNabycia}">cenaNabycia</th>
+          <th th:text="#{filmoteka.dataProdukcji}">dataProdukcji</th>
+          <!--<th th:text="#{filmoteka.rezyser}">rezyser</th>-->
+          <th th:text="#{filmoteka.tytul}">tytul</th>
+          <th th:text="#{filmoteka.operacje}">ops</th>
+
+
+        </tr>
+      </thead>
+      <tbody>
+        <tr th:each="movie : ${moviesAll}">
+          <form action="#" th:action="@{/monety}" th:object="${movie}" method="post">
+          <td th:text="${movie.numerKatalogowy}">1</td>
+
+          <td th:text="${movie.opis}">Długi opis</td>
+
+          <td th:text="${{movie.cenaNabycia}}">5.12</td>
+
+            <td th:text="${{movie.dataProdukcji}}">5.12</td>
+            <!--<td th:text="${{movie.rezyser}}">5.12</td>-->
+            <td th:text="${{movie.tytul}}">5.12</td>
+          <td>
+            <button type="submit" name="remove" th:value="${movie.numerKatalogowy}"
+            th:text="#{filmoteka.remove}">Del</button>
+
+            <a href="movie.html" th:href="@{|/movies/${movie.numerKatalogowy}|}" >
+            <button type="button" th:text="#{filmoteka.edit}">Edit</button></a>
+          </td>
+          </form>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <footer th:replace="th/layout :: site-footer" />
+</body>
+</html>

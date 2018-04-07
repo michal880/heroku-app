@@ -1,0 +1,43 @@
+<!DOCTYPE html >
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:fragment="site-head">
+<title th:text="#{title.application}">filmoteka</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet" type="text/css" media="all" href="../../../css/filmoteka.css" th:href="@{/css/filmoteka.css}" />
+<link rel="icon" href="../../../imgages/coins.ico" th:href="@{/images/coins.ico}" />
+</head>
+
+<body>
+
+  <header th:fragment="site-header">
+    <a href="index.html" th:href="@{/}"><img src="../../../images/logo.png" th:src="@{/images/logo.png}"/> </a>
+    <a href="filmoteka.html" th:href="@{/movies}">Wszystkie filmy</a>
+    <a href="tosell.html" th:href="@{/tosell}">Filmy do sprzedania</a>
+    <a href="movie.html" th:href="@{/movies/create}">Dodaj film</a>
+    Zalogowany: <b th:inline="text"> [[${#httpServletRequest.remoteUser}]] </b>  
+    <form th:action="@{/logout}" method="POST" style="display: inline">
+        <input type=submit class="link" value="Wyloguj"/>
+    </form>
+       
+    <ul id="messages">
+      <li th:each="msg : ${MyMessages}" th:text="${msg.text}"
+           th:class="${#strings.toLowerCase(msg.type)}">
+      </li>
+    </ul>
+  </header>
+
+  <div>
+    <h2 th:text="#{title.list}" style="display: inline;">Katalog filmów</h2>
+    <img src="../../../images/logo.png" alt="Klaser logo" title="logo" th:src="@{/images/logo.png}"
+      th:alt-title="#{title.application}" style="float: right;" />
+  </div>
+
+  <footer th:fragment="site-footer"> 
+  M.Rychlewicz <a href="https://github.com/michal880/heroku-app"> Source code</a>
+  &copy; Filmoteka System, 2018
+  </footer>
+
+</body>
+</html>
