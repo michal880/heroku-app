@@ -3,23 +3,25 @@ package pl.sternik.mr.heroku.services;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import pl.sternik.mr.heroku.entities.Movie;
+import pl.sternik.mr.heroku.entities.Rodzaj;
 import pl.sternik.mr.heroku.repositories.MovieAlreadyExistsException;
 import pl.sternik.mr.heroku.repositories.MoviesRepository;
 import pl.sternik.mr.heroku.repositories.NoSuchMovieException;
 
 
 @Service
-@Qualifier("tablica")
+//@Qualifier("tablica")
 public class FilmotekaServiceImpl implements FilmotekaService {
 
     @Autowired
-    @Qualifier("tablica")
+    //@Qualifier("tablica")
     private MoviesRepository bazaDanych;
 
     @Override
@@ -29,7 +31,7 @@ public class FilmotekaServiceImpl implements FilmotekaService {
 
     @Override
     public List<Movie> findAllToSell() {
-        return bazaDanych.findAll();
+        return  bazaDanych.findAll().stream().filter(q -> q.getRodzaj().equals(Rodzaj.AKCJI)).collect(Collectors.toList());
     }
 
     @Override

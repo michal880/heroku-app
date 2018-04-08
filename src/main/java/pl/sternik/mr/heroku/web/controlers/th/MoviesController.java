@@ -1,10 +1,12 @@
 package pl.sternik.mr.heroku.web.controlers.th;
 
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 //import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,7 +38,7 @@ public class MoviesController {
     
     @Autowired
     // @Qualifier("spring-data")
-    @Qualifier("tablica")
+    //@Qualifier("tablica")
     // @Qualifier("lista")
     private FilmotekaService filmotekaService;
 
@@ -85,7 +87,7 @@ public class MoviesController {
         }
     }
 
-    @RequestMapping(value = "/movices", params = { "save" }, method = RequestMethod.POST)
+    @RequestMapping(value = "/movies", params = { "save" }, method = RequestMethod.POST)
     public String saveMovie(Movie movie, BindingResult bindingResult, ModelMap model) {
         // @Valid
         if (bindingResult.hasErrors()) {
@@ -106,7 +108,7 @@ public class MoviesController {
     }
 
     @RequestMapping(value = "/movies", params = { "create" }, method = RequestMethod.POST)
-    public String createMovie(Movie movie, BindingResult bindingResult, ModelMap model) {
+    public String createMovie(@Valid Movie movie, BindingResult bindingResult, ModelMap model) {
         if (bindingResult.hasErrors()) {
             notifyService.addErrorMessage("Please fill the form correctly!");
             model.addAttribute("MyMessages",  notifyService.getNotificationMessages());
@@ -127,6 +129,7 @@ public class MoviesController {
 
     @RequestMapping(value = "/movies/create", method = RequestMethod.GET)
     public String showMainPages(final Movie movie) {
-        return "th/movies";
+        movie.setDataProdukcji(Calendar.getInstance().getTime());
+        return "th/movie";
     }
 }

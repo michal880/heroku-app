@@ -27,22 +27,30 @@
           </label> <input type="text" th:field="*{numerKatalogowy}" th:errorclass="fieldError" />
         </div>
         <div>
-          <label for="nominal"> <span th:text="#{filmoteka.tytul}">nominal</span>
-          </label> <input type="text" th:field="*{nominal}" th:errorclass="fieldError" />
-          <span th:if="${#fields.hasErrors('nominal')}" th:errors="*{nominal}">Incorrect nominal</span>
+          <label for="tytul"> <span th:text="#{filmoteka.tytul}">tytul</span>
+          </label> <input type="text" th:field="*{tytul}" th:errorclass="fieldError" />
+          <span th:if="${#fields.hasErrors('tytul')}" th:errors="*{tytul}">Incorrect nominal</span>
         </div>
         <div>
-          <label for=""> <span th:text="#{filmoteka.movie.dane}">opis</span>
+          <label for="opis"> <span th:text="#{filmoteka.opis}">opis</span>
           </label> <input type="text" th:field="*{opis}" th:errorclass="fieldError" />
         </div>
         <div>
-          <label for="waluta"> <span th:text="#{filmoteka.rezyser}">waluta</span>
-          </label> <input type="text" th:field="*{}" th:errorclass="fieldError" />
+          <label for="rezyser"> <span th:text="#{filmoteka.rezyser}">rezyser</span>
+          </label> <input type="text" th:field="*{rezyser}" th:errorclass="fieldError" />
         </div>
         <div>
-          <label for="status"> <span th:text="#{klaser.status}">status</span></label>
-            <select th:field="*{status}" th:errorclass="fieldError">
-              <option th:each="st : ${statusyAll}" th:value="${st}" th:text="#{'filmoteka.status.' + ${st}}">Nowa</option>
+          <label for="cenaNabycia"> <span th:text="#{filmoteka.cenaNabycia}">cenaNabycia</span>
+          </label> <input type="text" th:field="*{cenaNabycia}" th:errorclass="fieldError" />
+        </div>
+        <div>
+          <label for="dataProdukcji"> <span th:text="#{filmoteka.dataProdukcji}">dataProdukcji</span>
+          </label> <input type="text" th:field="*{dataProdukcji}" th:errorclass="fieldError" />
+        </div>
+        <div>
+          <label for="rodzaj"> <span th:text="#{filmoteka.rodzaj}">rodzaj</span></label>
+            <select th:field="*{rodzaj}" th:errorclass="fieldError">
+              <option th:each="st : ${statusyAll}" th:value="${st}" th:text="#{'filmoteka.rodzaj.' + ${st}}">Komedia</option>
             </select>          
         </div>
         <div class="submit">          

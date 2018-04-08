@@ -15,7 +15,7 @@ import pl.sternik.mr.heroku.entities.Rodzaj;
 
 
 @Service
-@Qualifier("lista")
+//@Qualifier("lista")
 public class MoviesRepositoryJ8Impl implements MoviesRepository {
 
     private List<Movie> movies = new ArrayList<Movie>() {

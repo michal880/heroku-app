@@ -37,15 +37,11 @@ public class FilmotekaController {
         return this.filmotekaService.findAll();
     }
 
-//    @ModelAttribute("coinsToSell")
-//    public List<Movie> populateCoinsToSell() {
-//        return this.klaserService.findAllToSell();
-//    }
+    @ModelAttribute("moviesToSell")
+    public List<Movie> populateMoviesToSell() {
+        return this.filmotekaService.findAllToSell();
+    }
 
-//    @ModelAttribute("coinsLast3")
-//    public List<Movie> populateLast3Coins() {
-//        return this.klaserService.findLatest3();
-//    }
 
     @RequestMapping({ "/", "/index" })
     public String index(Model model) {
